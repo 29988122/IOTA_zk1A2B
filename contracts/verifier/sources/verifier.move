@@ -31,4 +31,28 @@ module verifier::verifier {
             return false
         };
         verifiedResult
-    }
+
+ /* #[allow(implicit_const_copy)]
+    public fun verify_1A2B(
+        proof_bytes: vector<u8>,
+        pub_inputs_bytes: vector<u8>
+    ): bool {
+        let vk = groth16::prepare_verifying_key(&groth16::bn254(), &VK_BYTES_1A2B);
+        let proof = groth16::proof_points_from_bytes(proof_bytes);
+        let pub_inputs = groth16::public_proof_inputs_from_bytes(pub_inputs_bytes);
+
+        let verifiedResult = groth16::verify_groth16_proof(
+            &groth16::bn254(),
+            &vk,
+            &pub_inputs,
+            &proof
+        );
+        
+        event::emit(VerifiedEvent { is_verified: verifiedResult });
+        
+        if (!verifiedResult) {
+            return false
+        };
+        verifiedResult
+    } */
+}
