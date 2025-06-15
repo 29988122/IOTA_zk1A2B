@@ -113,10 +113,6 @@ The `main.rs` file generates a Groth16 proof using the Arkworks library. It curr
 6. **Serialize Outputs**:
    - Prints the verifying key, proof, and public inputs in hexadecimal format.
 
-### Current Limitation
-- Uses `guess_42.circom` (checks `x == 42`) instead of `cows_and_bulls.circom`.
-- Public input for `guess_42.circom` is a single value (`42`), while `cows_and_bulls.circom` requires an array (`guess[4]`) and outputs `[isCorrect, bulls, cows]`.
-
 ---
 
 ## Move Verifier Contract (`verifier.move`)
@@ -138,9 +134,6 @@ The `verifier.move` file is a Move smart contract on the IOTA blockchain that ve
 
 3. **Commented Function (`verify_1A2B`)**:
    - A template for verifying `cows_and_bulls.circom` proofs, identical to `verify_fixednum` but using `VK_BYTES_1A2B`.
-
-### Current Limitation
-- Only verifies proofs for `guess_42.circom`. For `cows_and_bulls.circom`, `VK_BYTES_1A2B` must be populated and `verify_1A2B` uncommented.
 
 ---
 
@@ -177,7 +170,7 @@ The components work together as follows:
    - Generates `cows_and_bulls.r1cs` and `cows_and_bulls.wasm`.
 
 2. **Generate Keys**:
-   - Use `snarkjs` for a trusted setup (not shown in `main.rs`):
+   - Use `snarkjs` for a trusted setup:
      ```bash
      snarkjs groth16 setup cows_and_bulls.r1cs ...
      ```
@@ -195,16 +188,3 @@ The components work together as follows:
 
 5. **Submit Proof**:
    - Use the IOTA client to call `verify_1A2B` with the proof and public inputs.
-
----
-
-## Limitations and Notes
-
-- **Rust Limitation**: `main.rs` currently uses `guess_42.circom`. Update it for `cows_and_bulls.circom` by adjusting file paths and inputs.
-- **Move Limitation**: `verifier.move` is set up for `guess_42.circom`. Use `VK_BYTES_1A2B` and `verify_1A2B` for the game.
-- **Security**: The proving key in `main.rs` is random. Use a trusted setup for production.
-- **Flexibility**: The secret is hardcoded (`1234`). For a dynamic secret, it must be a private input, requiring circuit adjustments.
-
-This project illustrates how ZKPs can ensure privacy in a blockchain-based game, with clear interactions between Circom, Rust, and Move.
-
----
