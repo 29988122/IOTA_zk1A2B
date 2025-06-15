@@ -31,7 +31,7 @@ module verifier::verifier {
             return false
         };
         verifiedResult
-
+    }
  /* #[allow(implicit_const_copy)]
     public fun verify_1A2B(
         proof_bytes: vector<u8>,
