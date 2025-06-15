@@ -1,0 +1,17 @@
+# Rust / Cargo
+/prover/target
+/target
+Cargo.lock
+
+# Circom
+/circuits/node_modules
+/circuits/build
+/circuits/**/*.r1cs
+/circuits/**/*_js
+
+# Move
+/contracts/verifier/build
+
+# IDE
+*.code-workspace
+.DS_Store
