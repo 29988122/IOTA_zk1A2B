@@ -4,8 +4,8 @@ use ark_circom::CircomConfig;
 use ark_groth16::{Groth16, prepare_verifying_key};
 use ark_serialize::CanonicalSerialize;
 use ark_snark::SNARK;
-use rand::rngs::StdRng;
-use rand::SeedableRng;
+use ark_std::rand::rngs::StdRng;
+use ark_std::rand::SeedableRng;
 
 #[tokio::main]
 async fn main() {
